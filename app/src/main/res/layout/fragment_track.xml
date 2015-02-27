@@ -30,9 +30,9 @@
                     ProgressWheel:textSize="@dimen/font_size_information_title"
                     ProgressWheel:rimColor="@color/title"
                     ProgressWheel:barLength="60dp"
-                    ProgressWheel:barColor="@color/title"
-                    ProgressWheel:barWidth="15dp"
-                    ProgressWheel:rimWidth="10dp" />
+                    ProgressWheel:barColor="@color/light_primary_color"
+                    ProgressWheel:barWidth="8dp"
+                    ProgressWheel:rimWidth="12dp" />
             </RelativeLayout>
 
             <View

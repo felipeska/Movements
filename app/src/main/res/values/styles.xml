@@ -12,4 +12,11 @@
         <item name="android:textColor">@color/secondary_text</item>
     </style>
 
+
+    <style name="item_content">
+        <item name="android:textSize">@dimen/font_size_information_content</item>
+        <item name="android:padding">@dimen/gap_min</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+
 </resources>

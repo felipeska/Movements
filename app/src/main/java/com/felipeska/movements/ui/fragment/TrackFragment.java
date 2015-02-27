@@ -106,17 +106,17 @@ public class TrackFragment extends Fragment {
   }
 
   @Subscribe
-  public void ontTrackingStoped(DisconnectionEvent event){
+  public void ontTrackingStoped(DisconnectionEvent event) {
     stopWheel();
   }
 
-  void stopWheel(){
+  void stopWheel() {
     if (mProgressWheel.isSpinning()) {
       mProgressWheel.stopSpinning();
     }
   }
 
-  void startWheel(){
+  void startWheel() {
     if (!mProgressWheel.isSpinning()) {
       mProgressWheel.spin();
     }

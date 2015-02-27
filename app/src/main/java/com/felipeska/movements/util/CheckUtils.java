@@ -13,6 +13,7 @@ public final class CheckUtils {
       throw new NullPointerException(msg);
     }
   }
+
   public static boolean isNull(Object object) {
     return object == null;
   }

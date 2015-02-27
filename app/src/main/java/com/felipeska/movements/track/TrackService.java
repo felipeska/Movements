@@ -8,10 +8,19 @@ import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.felipeska.movements.MovementsApp;
 import com.felipeska.movements.track.bus.TrackBusProvider;
 import com.felipeska.movements.track.event.LocationEvent;
 import com.felipeska.movements.track.event.PlayServicesConnectionEvent;
+import com.felipeska.movements.util.DateUtils;
 import com.squareup.otto.Subscribe;
+import com.squareup.sqlbrite.SqlBrite;
+
+import javax.inject.Inject;
+
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import static com.felipeska.movements.util.CheckUtils.isNull;
 
@@ -21,6 +30,8 @@ import static com.felipeska.movements.util.CheckUtils.isNull;
 public class TrackService extends Service {
 
   private static final String LOG_TAG = TrackService.class.getSimpleName();
+  @Inject
+  SqlBrite db;
   private boolean running;
   private TrackController mTrackController;
 
@@ -37,9 +48,11 @@ public class TrackService extends Service {
     Log.d(LOG_TAG, "Starting up!");
     running = true;
     TrackBusProvider.getInstance().register(this);
+    MovementsApp.objectGraph(this).inject(this);
     if (isNull(mTrackController)) {
       mTrackController = TrackController.withContext(this).build();
     }
+    observeArrivedLocations();
     mTrackController.startTracking();
     return START_STICKY;
   }
@@ -67,11 +80,24 @@ public class TrackService extends Service {
   }
 
   @Subscribe
-  public void onPlayServicesConnectionEvent(PlayServicesConnectionEvent event){
-    Log.d(LOG_TAG,"code status playservice: "+event.status);
+  public void onPlayServicesConnectionEvent(PlayServicesConnectionEvent event) {
+    Log.d(LOG_TAG, "code status play service: " + event.status);
+  }
+
+  private void observeArrivedLocations() {
+    Observable<SqlBrite.Query> locations = db.createQuery(com.felipeska.movements.db.Location.TABLE,
+            com.felipeska.movements.db.Location.QUERY);
+    locations.subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io());
   }
 
   private void storeLocation(Location location) {
-    Log.d(LOG_TAG, "Save bitch!");
+    db.insert(com.felipeska.movements.db.Location.TABLE,
+            new com.felipeska.movements.db.Location.Builder()
+                    .latitude((float) location.getLongitude())
+                    .longitude((float) location.getLongitude())
+                    .speed(location.getSpeed())
+                    .date(DateUtils.dateForHumans(location.getTime()))
+                    .build());
   }
 }

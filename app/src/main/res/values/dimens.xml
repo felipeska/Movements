@@ -6,6 +6,6 @@
     <dimen name="font_size_information_title">@dimen/abc_text_size_headline_material</dimen>
     <dimen name="font_size_information_content">@dimen/abc_text_size_medium_material</dimen>
 
-    <dimen name="track_status_size">200dp</dimen>
+    <dimen name="track_status_size">220dp</dimen>
     <dimen name="gap_normal">10dp</dimen>
 </resources>

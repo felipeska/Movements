@@ -1,8 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="information_title">
+        <item name="android:textSize">@dimen/font_size_information_title</item>
+        <item name="android:padding">@dimen/gap_normal</item>
+        <item name="android:textColor">@color/accent_color</item>
+    </style>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="information_content">
+        <item name="android:textSize">@dimen/font_size_information_content</item>
+        <item name="android:padding">@dimen/gap_normal</item>
+        <item name="android:textColor">@color/secondary_text</item>
     </style>
 
 </resources>

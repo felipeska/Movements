@@ -1,16 +1,115 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
+                xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context=".MainActivity$PlaceholderFragment">
+                tools:context=".ui.activity.MainActivity">
 
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <ScrollView
+        android:id="@+id/sv_detail_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/iv_detail_cover"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/track_status_size"
+                android:background="@color/primary_color">
+                <com.todddavies.components.progressbar.ProgressWheel
+                    android:id="@+id/pw_spinner"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_centerInParent="true"
+                    ProgressWheel:text="@string/progress_title_tracking"
+                    ProgressWheel:textColor="@color/title"
+                    ProgressWheel:textSize="@dimen/font_size_information_title"
+                    ProgressWheel:rimColor="@color/title"
+                    ProgressWheel:barLength="60dp"
+                    ProgressWheel:barColor="@color/title"
+                    ProgressWheel:barWidth="15dp"
+                    ProgressWheel:rimWidth="10dp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_below="@id/iv_detail_cover"
+                android:background="@drawable/toolbar_dropshadow"/>
+
+            <TextView
+                android:id="@+id/information_title"
+                style="@style/information_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_detail_cover"
+                android:text="Information"
+                tools:text="Information"/>
+
+            <TextView
+                android:id="@+id/latitude"
+                style="@style/information_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/information_title"
+                android:text="@string/item_latitude"
+                tools:text="Latitude: -74.905496"/>
+
+            <TextView
+                android:id="@+id/longitude"
+                style="@style/information_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/latitude"
+                android:text="@string/item_longitude"
+                tools:text="Latitude: -7.905496"/>
+
+            <TextView
+                android:id="@+id/speed"
+                style="@style/information_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/longitude"
+                android:text="@string/item_speed"
+                tools:text="Speed: 88 m/s"/>
+
+            <TextView
+                android:id="@+id/date"
+                style="@style/information_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/speed"
+                android:text="@string/item_last_date"
+                tools:text="Last location date: 89/10/16 10:00:00 AM"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/date">
+
+                <com.gc.materialdesign.views.ButtonRectangle
+                    android:id="@+id/buttonStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/font_size_information_title"
+                    android:background="@color/dark_primary_color"
+                    android:text="@string/button_start"/>
+
+                <com.gc.materialdesign.views.ButtonRectangle
+                    android:id="@+id/buttonStop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/font_size_information_title"
+                    android:background="@color/dark_primary_color"
+                    android:text="@string/button_stop"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

@@ -1,17 +1,18 @@
 package com.felipeska.movements.ui.activity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.felipeska.movements.MovementsApp;
 import com.felipeska.movements.R;
-import com.felipeska.movements.db.Location;
 import com.felipeska.movements.ui.fragment.HistoryFragment;
 import com.felipeska.movements.ui.fragment.TrackFragment;
+import com.felipeska.movements.ui.listener.SupportActionBarListener;
 import com.squareup.sqlbrite.SqlBrite;
 
 import javax.inject.Inject;
@@ -19,7 +20,7 @@ import javax.inject.Inject;
 /**
  * @author felipeska
  */
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements SupportActionBarListener {
 
   @Inject
   SqlBrite db;
@@ -30,9 +31,7 @@ public class MainActivity extends ActionBarActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     if (savedInstanceState == null) {
-      getSupportFragmentManager().beginTransaction()
-              .add(R.id.container, new TrackFragment(),"track")
-              .commit();
+      loadFragment(TrackFragment.newInstance(),TrackFragment.ID,false);
     }
 
     MovementsApp.objectGraph(this).inject(this);
@@ -70,21 +69,50 @@ public class MainActivity extends ActionBarActivity {
     }
   }
 
-  private void showHistory() {
-    if(hasHistory()){
-      getSupportFragmentManager().beginTransaction()
-              .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left,
+  void loadFragment(Fragment fragment, String id, boolean inStack) {
+    if (inStack) {
+      getSupportFragmentManager()
+              .beginTransaction()
+              .setCustomAnimations(R.anim.slide_in_right,
+                      R.anim.slide_out_left, R.anim.slide_in_left,
                       R.anim.slide_out_right)
-              .replace(R.id.container, HistoryFragment.newInstance(),"history")
-              .addToBackStack(null)
-              .commit();
-    }
-    else{
-      Toast.makeText(this,"No history",Toast.LENGTH_LONG).show();
+              .replace(R.id.container, fragment, id).addToBackStack(null).commit();
+    } else {
+      getSupportFragmentManager()
+              .beginTransaction()
+              .setCustomAnimations(R.anim.slide_in_right,
+                      R.anim.slide_out_left, R.anim.slide_in_left,
+                      R.anim.slide_out_right)
+              .replace(R.id.container, fragment, id).commit();
     }
   }
 
-  private boolean hasHistory(){
-    return db.query(Location.QUERY).getCount() > 0 ?true : false;
+  private void showHistory() {
+    loadFragment(HistoryFragment.newInstance(), HistoryFragment.ID, true);
+  }
+
+  private void enableHomeAsUp(boolean enable) {
+    if (mToolbar != null) {
+      getSupportActionBar().setDisplayHomeAsUpEnabled(enable);
+    }
+  }
+
+  @Override
+  public void displayHomeAsUpEnabled(boolean display) {
+    enableHomeAsUp(display);
+  }
+
+  @Override
+  public void navigateToHome() {
+    getSupportFragmentManager().popBackStack();
+  }
+
+  @Override
+  public void deactivateOrientation(boolean deactivate) {
+    if(deactivate){
+      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }else{
+      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+    }
   }
 }

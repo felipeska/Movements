@@ -29,8 +29,7 @@ import butterknife.OnClick;
  */
 public class TrackFragment extends Fragment {
 
-  private final static String FORMAT_DISPLAY_DATA = "%s \t %s";
-
+  public static final String ID = TrackFragment.class.getSimpleName();
   @InjectView(R.id.latitude)
   TextView mTextViewLatitude;
   @InjectView(R.id.longitude)
@@ -39,7 +38,6 @@ public class TrackFragment extends Fragment {
   TextView mTextViewSpeed;
   @InjectView(R.id.date)
   TextView mTextViewDate;
-
   @InjectView(R.id.pw_spinner)
   ProgressWheel mProgressWheel;
   private TrackController mTrackController;
@@ -47,6 +45,11 @@ public class TrackFragment extends Fragment {
   private Resources mRes;
 
   public TrackFragment() {
+  }
+
+  public static TrackFragment newInstance() {
+    TrackFragment fragment = new TrackFragment();
+    return fragment;
   }
 
   @OnClick(R.id.buttonStart)
@@ -106,7 +109,7 @@ public class TrackFragment extends Fragment {
   }
 
   @Subscribe
-  public void ontTrackingStoped(DisconnectionEvent event) {
+  public void ontTrackingStopped(DisconnectionEvent event) {
     stopWheel();
   }
 
@@ -123,14 +126,10 @@ public class TrackFragment extends Fragment {
   }
 
   void updateUI() {
-    mTextViewLatitude.setText(String.format(FORMAT_DISPLAY_DATA, mRes.getText(R.string.item_latitude),
-            mLocation.getLatitude()));
-    mTextViewLongitude.setText(String.format(FORMAT_DISPLAY_DATA, mRes.getText(R.string.item_longitude),
-            mLocation.getLongitude()));
-    mTextViewSpeed.setText(String.format(FORMAT_DISPLAY_DATA + " m/s", mRes.getText(R.string.item_speed),
-            mLocation.getSpeed()));
-    mTextViewDate.setText(String.format(FORMAT_DISPLAY_DATA, mRes.getText(R.string.item_last_date),
-            DateUtils.dateForHumans(mLocation.getTime())));
+    mTextViewLatitude.setText(mRes.getString(R.string.item_latitude, mLocation.getLatitude()));
+    mTextViewLongitude.setText(mRes.getString(R.string.item_longitude, mLocation.getLongitude()));
+    mTextViewSpeed.setText(mRes.getString(R.string.item_speed, mLocation.getSpeed()));
+    mTextViewDate.setText(mRes.getString(R.string.item_last_date, DateUtils.dateForHumans(mLocation.getTime())));
     Log.d(TrackFragment.class.getSimpleName(), mTrackController.toString());
   }
 

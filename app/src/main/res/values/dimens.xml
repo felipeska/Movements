@@ -9,4 +9,7 @@
     <dimen name="track_status_size">220dp</dimen>
     <dimen name="gap_normal">10dp</dimen>
     <dimen name="gap_min">2dp</dimen>
+    <dimen name="paralax_offset">100dp</dimen>
+    <dimen name="map_height">200dp</dimen>
+    <dimen name="general_padding">14dp</dimen>
 </resources>

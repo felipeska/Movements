@@ -3,16 +3,21 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_information">Information</string>
-    <string name="item_latitude">Latitude:</string>
-    <string name="item_longitude">Longitude:</string>
-    <string name="item_altitude">Altitude:</string>
-    <string name="item_last_date">Last location date: </string>
-    <string name="item_speed">Speed:</string>
+    <string name="item_latitude">Latitude: %s</string>
+    <string name="item_longitude">Longitude: %s</string>
+    <string name="item_altitude">Altitude: %s</string>
+    <string name="item_last_date">Last location date: %s</string>
+    <string name="item_speed">Speed: %s m/s</string>
     <string name="button_start">start</string>
     <string name="button_stop">stop</string>
     <string name="progress_title_tracking">Tracking&#8230;</string>
     <string name="date">Date:</string>
+    <string name="history_fragment_title">History</string>
+    <string name="no_location_history">No History from locations. Run! Run!</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="placeholder_latitude">Latitude n/a</string>
+    <string name="placeholder_longitude">Longitude n/a</string>
+    <string name="placeholder_speed">Speed: n/a</string>
+    <string name="placeholder_date">Last location date: n/a</string>
+
 </resources>

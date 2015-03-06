@@ -34,6 +34,8 @@ public class TrackService extends Service {
   SqlBrite db;
   private boolean running;
   private TrackController mTrackController;
+  private double lastLatitude;
+  private double lastLongitude;
 
   public static Intent newIntent(Context context) {
     return new Intent(context, TrackService.class);
@@ -75,7 +77,14 @@ public class TrackService extends Service {
   @Subscribe
   public void onLocationChanged(LocationEvent event) {
     if (event.location != null) {
-      storeLocation(event.location);
+      if(lastLatitude != event.location.getLatitude()
+              && lastLongitude != event.location.getLongitude()){
+        Log.d(LOG_TAG, "last latitude " + lastLatitude);
+        Log.d(LOG_TAG, "last longitude " + lastLongitude);
+        Log.d(LOG_TAG, "new latitude " + event.location.getLatitude());
+        Log.d(LOG_TAG, "new longitude " + event.location.getLongitude());
+        storeLocation(event.location);
+      }
     }
   }
 
@@ -92,9 +101,11 @@ public class TrackService extends Service {
   }
 
   private void storeLocation(Location location) {
+    lastLatitude = location.getLatitude();
+    lastLongitude = location.getLongitude();
     db.insert(com.felipeska.movements.db.Location.TABLE,
             new com.felipeska.movements.db.Location.Builder()
-                    .latitude((float) location.getLongitude())
+                    .latitude((float) location.getLatitude())
                     .longitude((float) location.getLongitude())
                     .speed(location.getSpeed())
                     .date(DateUtils.dateForHumans(location.getTime()))

@@ -1,6 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
-                xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="@dimen/activity_vertical_margin"
@@ -20,19 +20,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/track_status_size"
                 android:background="@color/primary_color">
+
                 <com.todddavies.components.progressbar.ProgressWheel
                     android:id="@+id/pw_spinner"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:layout_centerInParent="true"
+                    ProgressWheel:barColor="@color/light_primary_color"
+                    ProgressWheel:barLength="60dp"
+                    ProgressWheel:barWidth="8dp"
+                    ProgressWheel:rimColor="@color/title"
+                    ProgressWheel:rimWidth="12dp"
                     ProgressWheel:text="@string/progress_title_tracking"
                     ProgressWheel:textColor="@color/title"
-                    ProgressWheel:textSize="@dimen/font_size_information_title"
-                    ProgressWheel:rimColor="@color/title"
-                    ProgressWheel:barLength="60dp"
-                    ProgressWheel:barColor="@color/light_primary_color"
-                    ProgressWheel:barWidth="8dp"
-                    ProgressWheel:rimWidth="12dp" />
+                    ProgressWheel:textSize="@dimen/font_size_information_title"/>
             </RelativeLayout>
 
             <View
@@ -56,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/information_title"
-                android:text="@string/item_latitude"
+                android:text="@string/placeholder_latitude"
                 tools:text="Latitude: -74.905496"/>
 
             <TextView
@@ -65,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/latitude"
-                android:text="@string/item_longitude"
+                android:text="@string/placeholder_longitude"
                 tools:text="Latitude: -7.905496"/>
 
             <TextView
@@ -74,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/longitude"
-                android:text="@string/item_speed"
+                android:text="@string/placeholder_speed"
                 tools:text="Speed: 88 m/s"/>
 
             <TextView
@@ -83,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/speed"
-                android:text="@string/item_last_date"
+                android:text="@string/placeholder_date"
                 tools:text="Last location date: 89/10/16 10:00:00 AM"/>
 
             <LinearLayout
@@ -96,18 +97,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="@dimen/font_size_information_title"
                     android:background="@color/dark_primary_color"
-                    android:text="@string/button_start"/>
+                    android:text="@string/button_start"
+                    android:textSize="@dimen/font_size_information_title"/>
 
                 <com.gc.materialdesign.views.ButtonRectangle
                     android:id="@+id/buttonStop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="@dimen/font_size_information_title"
                     android:background="@color/dark_primary_color"
-                    android:text="@string/button_stop"/>
+                    android:text="@string/button_stop"
+                    android:textSize="@dimen/font_size_information_title"/>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

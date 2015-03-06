@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:weightSum="1">
+              android:background="@android:color/white"
+              android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/item_content"
-        tools:text="Medium Text"
-        android:id="@+id/textViewItemLatitude"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/card_bg_play"
+        android:orientation="vertical"
+        android:padding="@dimen/general_padding">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/item_content"
-        android:text="Medium Text"
-        android:id="@+id/textViewItemLongitude"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/item_content"
-        android:text="Medium Text"
-        android:id="@+id/textViewItemSpeed"/>
+        <TextView
+            android:id="@+id/textViewItemLatitude"
+            style="@style/item_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Medium Text"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/item_content"
-        android:text="Medium Text"
-        android:id="@+id/textViewItemDate"/>
+        <TextView
+            android:id="@+id/textViewItemLongitude"
+            style="@style/item_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"/>
+
+        <TextView
+            android:id="@+id/textViewItemSpeed"
+            style="@style/item_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"/>
+
+        <TextView
+            android:id="@+id/textViewItemDate"
+            style="@style/item_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"/>
+    </LinearLayout>
 </LinearLayout>

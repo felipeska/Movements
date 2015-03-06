@@ -1,5 +1,5 @@
 # Movements
-Simple tracker for android. Download demo [Here!](/demo/).   
+Simple tracker for android. Download demo [Here!][demo].   
 
 
 ![](https://raw.githubusercontent.com/felipeska/Movements/master/extras/track.png)
@@ -9,4 +9,4 @@ Simple tracker for android. Download demo [Here!](/demo/).
 
 ![](https://raw.githubusercontent.com/felipeska/Movements/master/extras/no_history.png)
 ![](https://raw.githubusercontent.com/felipeska/Movements/master/extras/route.png)
-[demo]: https://github.com/felipeska/Movements/blob/master/installer/demo.apk?raw=true
+[demo]: https://www.dropbox.com/s/bbanaoc9pavnio7/Movements%20v1.0.apk?dl=0
